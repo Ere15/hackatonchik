@@ -27,8 +27,9 @@ ALGORITHM = os.getenv("ALGORITHM", "HS256")
 router = APIRouter()
 
 # Эндпоинт для аутентификации пользователей
-@router.post("/login/")
+@router.post("/login")
 def login(request: schemas.LoginRequest, db: Session = Depends(get_db)):
+    print('hellow')
     user = crud.authenticate_user(db, request.Логин, request.Пароль)
     if not user:
         raise HTTPException(

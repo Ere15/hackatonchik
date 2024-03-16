@@ -26,6 +26,7 @@ ALGORITHM = os.getenv("ALGORITHM", "HS256")
 
 # Функция для аутентификации пользователя
 def authenticate_user(db: Session, username: str, password: str):
+    print('asd')
     return db.query(Сотрудники).filter(Сотрудники.Логин == username, Сотрудники.Пароль == password).first()
 
 
