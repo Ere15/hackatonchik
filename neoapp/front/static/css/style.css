@@ -1,0 +1,95 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #E9812B, #8F0565);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    width: 80%;
+    max-width: 400px;
+    background: linear-gradient(45deg, #E9812B, #8F0565);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-left: 150%;
+}
+
+.login-container h2 {
+    color: #f1e2f7;
+    margin-bottom: 20px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Добавляем центрирование по вертикали */
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #ffffff;
+}
+
+.form-group input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    font-size: 16px;
+    background-color: #e2b3b3;
+    border: 1px solid #f21ea8;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #f8ad7b;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #b74795;
+}
+
+input::placeholder {
+    color: #e675ee;
+}
+
+.logo-container {
+    position: absolute;
+    left: 25%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column; /* Располагаем элементы в столбец */
+    align-items: center;
+}
+
+.logo img {
+    max-width: 150px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.logo-text h3 {
+    color: #ece3e9;
+    font-size: 1.5em;
+    margin: 0;
+}

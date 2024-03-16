@@ -1,0 +1,169 @@
+/* employee.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #E9812B, #8F0565); /* Изменен цвет фона на однородный */
+    color: #fff; /* Устанавливаем цвет текста по умолчанию */
+}
+
+
+.profile-info {
+    margin-right: 20px; /* Изменено на margin-right */
+}
+
+.decision-buttons {
+    margin-left: auto;
+    color: #8F0565;
+  
+}
+
+.decision-buttons button {
+    margin-left: 10px; /* Расстояние между кнопками */
+    color: #8F0565;
+    padding: 10px;
+    background-color: #f8ad7b;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.decision-buttons button:hover {
+    background-color: #b74795;
+}
+
+.employee-profile {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    color: #8F0565; /* Изменяем цвет текста для профиля */
+    font-size: 20px; /* Устанавливаем размер шрифта */
+    font-weight: bold;
+}
+
+.employee-profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile-info {
+    color: #8F0565; /* Изменяем цвет текста для профиля */
+    font-size: 20px; /* Устанавливаем размер шрифта */
+    font-weight: bold; /* Устанавливаем жирное начертание */
+}
+
+.requests-table {
+    margin: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.requests-table table {
+    width: calc(100% - 20px);
+    border-collapse: collapse;
+}
+
+.requests-table th {
+    position: sticky;
+    padding: 10px;
+    top: 0;
+    z-index: 1;
+    background-color: #8F0565;
+    color: #fff;
+    border: 2px solid #ddd; 
+}
+
+.requests-table td {
+    padding: 10px;
+    border: 2px solid #ddd; /* Увеличиваем толщину границ */
+    background-color: #E9812B; /* Цвет фона как заголовки столбцов */
+    color: #fff; /* Цвет текста как заголовки столбцов */
+}
+
+.requests-table tbody tr {
+    background-color: rgba(242, 242, 242, 0.7);
+}
+
+.filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    position: relative;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+}
+
+.search input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+#search-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+#search-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.label-filter {
+    position: relative;
+}
+
+/* Стили для кнопки "Фильтр" */
+#filter-btn {
+    background-color: #8F0565;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Стили для выпадающего списка */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 120px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 10px;
+    top: calc(100% + 10px);
+    left: 0;
+}
+
+
+/* Новый CSS для отображения выпадающего списка */
+.show + .label-filter .dropdown-content {
+    display: block;
+}
+
+.dropdown-content label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000; /* Изменяем цвет текста */
+}
+
+.dropdown-content input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Стили для активации выпадающего списка */
+.show {
+    display: block !important;
+}

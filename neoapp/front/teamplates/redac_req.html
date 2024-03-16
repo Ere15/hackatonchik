@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали запроса</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10%;
+            background: linear-gradient(135deg, #E9812B, #8F0565);
+        }
+
+        .request-details {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .request-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .request-header h2 {
+            margin: 0;
+        }
+
+        .request-content {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            margin-right: 20px;
+        }
+
+        .request-content textarea {
+            width: 98%;
+            height: 210px;
+            background-color: rgb(246, 239, 220);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            resize: none;
+            margin-bottom: 7px;
+            margin-right: 10px;
+        }
+
+        .request-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .request-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .request-actions button.edit {
+            background-color: #E9812B;
+            color: #fff;
+        }
+
+        .request-actions button.submit {
+            background-color: #8F0565;
+            color: #fff;
+        }
+
+        .request-title-input,
+        #recipient-select {
+            background-color: #fbf2f8;
+            width: 40%;
+            max-width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            margin-left: 100px;
+            font-size: 16px;
+            text-decoration-color: #000000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="request-details">
+    <input type="text" id="request-title-input" class="request-title-input" placeholder="Название запроса">
+    <!-- Добавляем выпадающий список с должностями -->
+    <select id="recipient-select">
+        <option value="" disabled selected>Кому отправить</option>
+        <option value="РДиректор">Директор</option>
+        <option value="Менеджер">Менеджер</option>
+        <option value="Руководитель отдела">Руководитель отдела</option>
+        
+        
+    </select>
+    <div class="request-header">
+        <h2 id="request-title">Тема запроса</h2>
+        <p id="request-status">Статус запроса</p>
+    </div>
+
+    <div class="request-content">
+        <textarea id="request-description" readonly>Описание запроса</textarea>
+    </div>
+
+    <div class="request-actions">
+        <button class="edit">Добавить описание</button>
+        <button class="submit" style="display: none;">Отправить</button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Получаем данные о запросе из параметров запроса
+        var params = new URLSearchParams(window.location.search);
+        var requestTitle = params.get('title'); // Получаем название запроса
+        var requestDescription = params.get('description'); // Получаем описание запроса
+        var requestStatus = params.get('status'); // Получаем статус запроса
+
+        // Устанавливаем полученные значения в соответствующие элементы на странице
+        document.getElementById("request-title-input").value = requestDescription;
+        document.getElementById("request-title").textContent = requestTitle;
+        document.getElementById("request-status").textContent = requestStatus;
+
+        var editButton = document.querySelector(".edit");
+        var submitButton = document.querySelector(".submit");
+        var descriptionTextarea = document.getElementById("request-description");
+
+        // Обработчик клика на кнопку "Редактировать"
+        editButton.addEventListener("click", function() {
+            descriptionTextarea.removeAttribute("readonly"); // Разрешаем редактирование
+            submitButton.style.display = "block"; // Показываем кнопку "Отправить"
+        });
+
+        // Обработчик клика на кнопку "Отправить"
+        submitButton.addEventListener("click", function() {
+            descriptionTextarea.setAttribute("readonly", ""); // Запрещаем редактирование
+            submitButton.style.display = "none"; // Скрываем кнопку "Отправить"
+            // Здесь вы можете добавить код для сохранения описания запроса
+        });
+    });
+</script>
+
+</body>
+</html>
