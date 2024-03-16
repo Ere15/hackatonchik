@@ -6,8 +6,8 @@ from enum import Enum
 
 # Схема данных для запроса аутентификации пользователя
 class LoginRequest(BaseModel):
-    Логин: str
-    Пароль: str
+    username: str
+    password: str
 
 # Схема данных для создания нового запроса
 class RequestCreate(BaseModel):

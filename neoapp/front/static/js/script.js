@@ -1,13 +1,12 @@
 // Получаем ссылку на форму входа
 const loginForm = document.getElementById('login-form');
-
+console.log("Скрипт загружен");
 // Добавляем обработчик события на отправку формы
 loginForm.addEventListener('submit', function(event) {
     // Предотвращаем стандартное поведение формы (перезагрузка страницы)
     event.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-
     // Отправляем запрос на аутентификацию
     fetch('/login', {
         method: 'POST',
@@ -21,6 +20,8 @@ loginForm.addEventListener('submit', function(event) {
     })
     .then(response => {
         if (response.ok) {
+            console.log("Скрипт загружен");
+
             // Парсим ответ сервера в формат JSON
             return response.json();
         } else {
@@ -37,7 +38,5 @@ loginForm.addEventListener('submit', function(event) {
     })
     .catch(error => {
         console.error('Ошибка при проверке логина:', error);
-        alert(error.message);
     });
 });
-

@@ -10,7 +10,6 @@ from typing import List
 from sqlalchemy.sql import text
 from neoapp.app.api.models.employee import Сотрудники
 from neoapp.app.api.models.request import Запросы
-import jwt
 from jwt import PyJWTError
 from dotenv import load_dotenv
 import os
@@ -30,7 +29,7 @@ router = APIRouter()
 @router.post("/login")
 def login(request: schemas.LoginRequest, db: Session = Depends(get_db)):
     print('hellow')
-    user = crud.authenticate_user(db, request.Логин, request.Пароль)
+    user = crud.authenticate_user(db, request.username, request.password)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

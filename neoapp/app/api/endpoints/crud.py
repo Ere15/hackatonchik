@@ -86,6 +86,7 @@ def get_user_role_from_database(user_id: int, db: Session):
         return employee.Роль_на_сайте
     else:
         return None
+    
 
 # Функция для получения текущего пользователя из бд
 def get_current_user(db: Session, id: int):
@@ -93,7 +94,18 @@ def get_current_user(db: Session, id: int):
 
 # Функция для получения статуса запроса
 def get_owner_pending_requests(db: Session):
-    return db.query(Запросы).filter(Запросы.Статус == "pending").all()
+    current_user = get_current_user(db, id) 
+    if current_user is None:
+        raise HTTPException(status_code=404, detail="Current user not found")
+    considered_requests = db.query(Запросы.Request).join(Сотрудники, Запросы.id_сотрудника == Сотрудники.id_сотрудника).filter(
+        Запросы.Request.Статус == 'В обработке', #заменить на нужные
+        Запросы.Request.id_получателя == current_user.id_сотрудника #заменить на нужные
+    ).all()
+    for request in considered_requests:
+        request.Дата_запроса = request.Дата_запроса.strftime('%Y-%m-%d')
+    return considered_requests
+
+
 
 # Функция для получения профиля владельца системы
 def get_owner_profile(db: Session):
