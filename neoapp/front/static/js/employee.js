@@ -4,11 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
     var searchBtn = document.getElementById("search-btn");
     var searchInput = document.getElementById("search");
     var notFoundMessage = document.getElementById("not-found");
-    var reviewingBtn = document.getElementById("reviewing-btn");
-    var reviewedBtn = document.getElementById("reviewed-btn");
-    var makeRequestBtn = document.getElementById("make-request"); // Новая переменная для кнопки "Создать запрос"
-
-    var currentFilterBtn = null; // Переменная для хранения текущей активной кнопки фильтрации
 
     // Показываем/скрываем выпадающее меню при клике на кнопку "Фильтр"
     filterBtn.addEventListener("click", function() {
@@ -20,6 +15,41 @@ document.addEventListener("DOMContentLoaded", function() {
     labels.forEach(function(label) {
         label.addEventListener("change", filterRows);
     });
+document.addEventListener("DOMContentLoaded", function() {
+    // Отправляем GET-запрос на эндпоинт для получения данных
+    fetch('/owner/requests/pending')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ошибка при получении данных');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Обновляем таблицу с данными
+            updateTable(data);
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+        });
+
+    function updateTable(data) {
+        const tbody = document.querySelector('.requests-table tbody');
+        tbody.innerHTML = ''; // Очищаем содержимое tbody
+
+        // Проходим по данным и добавляем строки в таблицу
+        data.forEach(request => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${request.id}</td>
+                <td>${request.name}</td>
+                <td>${request.label}</td>
+                <td>${request.status}</td>
+                <td>${request.date}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+});
 
     // Обработчик для поиска при нажатии на кнопку лупы
     searchBtn.addEventListener("click", filterRows);
@@ -40,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Обработчик для кнопки "Создать запрос"
     makeRequestBtn.addEventListener("click", function() {
         // Переход на страницу создания запроса
-        window.location.href = "/teamplates/redac_req.html";
+        window.location.href = "redac_req.html";
     });
 
     // Добавляем обработчик клика на строки таблицы
@@ -50,45 +80,18 @@ document.addEventListener("DOMContentLoaded", function() {
             // Получаем номер запроса из первой ячейки строки
             var requestId = row.cells[0].textContent;
             // Переходим на страницу деталей запроса с передачей номера запроса в параметрах запроса
-            window.location.href = "/teamplates/request_details.html.html?id=" + requestId;
+            window.location.href = "request_details.html?id=" + requestId;
         });
     });
 
-    function toggleFilter(btn) {
-        if (btn === currentFilterBtn) {
-            currentFilterBtn.classList.remove("active");
-            currentFilterBtn = null;
-        } else {
-            if (currentFilterBtn) {
-                currentFilterBtn.classList.remove("active");
-            }
-            currentFilterBtn = btn;
-            currentFilterBtn.classList.add("active");
-        }
-        filterRows();
-    }
-
     function filterRows() {
         var searchText = searchInput.value.toLowerCase();
-        var statusFilter = null;
-
-        // Проверяем, какая кнопка фильтрации активна
-        if (currentFilterBtn === reviewingBtn) {
-            statusFilter = ["в обработке", "новый"];
-        } else if (currentFilterBtn === reviewedBtn) {
-            statusFilter = ["одобрено", "отказано"];
-        }
-
         var rows = document.querySelectorAll(".requests-table tbody tr");
         var found = false;
-
+        
         rows.forEach(function(row) {
             var rowText = row.textContent.toLowerCase();
-            var status = row.cells[3].textContent.toLowerCase(); // Получаем текст статуса из четвёртой ячейки
-            var isMatch = rowText.includes(searchText); // Проверяем наличие текста в строке
-            var statusMatch = !statusFilter || statusFilter.includes(status); // Проверяем соответствие статуса выбранному фильтру
-
-            if (isMatch && statusMatch) {
+            if (rowText.includes(searchText)) {
                 row.style.display = "";
                 found = true;
             } else {
