@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Обработчик для кнопки "Создать запрос"
     makeRequestBtn.addEventListener("click", function() {
         // Переход на страницу создания запроса
-        window.location.href = "redac_req.html";
+        window.location.href = "/teamplates/redac_req.html";
     });
 
     // Добавляем обработчик клика на строки таблицы
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Получаем номер запроса из первой ячейки строки
             var requestId = row.cells[0].textContent;
             // Переходим на страницу деталей запроса с передачей номера запроса в параметрах запроса
-            window.location.href = "request_details.html?id=" + requestId;
+            window.location.href = "/teamplates/request_details.html.html?id=" + requestId;
         });
     });
 
