@@ -30,7 +30,7 @@ router = APIRouter()
 @router.post("/login")
 def login(request: schemas.LoginRequest, db: Session = Depends(get_db)):
     print('hellow')
-    user = crud.authenticate_user(db, request.Логин, request.Пароль)
+    user = crud.authenticate_user(db, request.username, request.password)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
