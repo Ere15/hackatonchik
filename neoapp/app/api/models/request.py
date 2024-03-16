@@ -15,7 +15,7 @@ class Запросы(Base):
     Дата_ответа = Column(Date)
     Статус = Column(String, nullable=False)
     id_сотрудника = Column(Integer, ForeignKey('Сотрудники.id_сотрудника'), nullable=False)
-    Получатель = Column(String, nullable=False)
+    id_получателя = Column(Integer, nullable=False)
 
     # Определение отношения многие-к-одному с таблицей "Сотрудники"
     сотрудники = relationship("Сотрудники", back_populates="запросы")

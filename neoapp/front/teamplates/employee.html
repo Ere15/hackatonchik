@@ -4,29 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Страница работника компании</title>
-    <link rel="stylesheet" href="employee.css">
+    <link rel="stylesheet" href="/static/css/employee.css">
 </head>
 <body>
 
 <div class="employee-profile">
-    <img src="photo/pct1.png" alt="User Icon">
+    <img src="/static/photo/pct1.png" alt="User Icon">
     <div class="profile-info">
-        <h2>Федорова Анна</h2>
-        <p>Программист</p>
+        <h2>Имя Фамилия</h2>
+        <p>Должность</p>
     </div>
 </div>
 
 <div class="filter">
     <div class="search">
         <input type="text" id="search" placeholder="Введите запрос...">
-        <button id="search-btn"><img src="photo/lupa.png" alt="Search Icon"></button>
+        <button id="search-btn"><img src="/static/photo/lupa.png" alt="Search Icon"></button>
     </div>
     <button id="filter-btn">Фильтр</button>
-    <div class="decision-buttons">
-        <button id="reviewing-btn" data-status="reviewing">На рассмотрении</button>
-        <button id="reviewed-btn" data-status="reviewed">Рассмотрено</button>
-        <button id="make-request">Создать запрос</button>
-    </div>
     <div class="label-filter">
         <div class="dropdown-content">
             <input type="checkbox" id="Отпуск" name="label" value="Отпуск">
@@ -36,8 +31,10 @@
             <input type="checkbox" id="Проект" name="label" value="Проект">
             <label for="Проект">Проект</label><br>
         </div>
+        
     </div>
 </div>
+
 
 <div class="requests-table">
     <table>
@@ -52,88 +49,13 @@
         </thead>
         <tbody>
             <!-- Добавляем 10 дополнительных запросов -->
-            <tr>
-                <td>1</td>
-                <td>Отпуск на море</td>
-                <td>Отпуск</td>
-                <td>В обработке</td>
-                <td>2024-03-15</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Больничный</td>
-                <td>Больничный</td>
-                <td>В обработке</td>
-                <td>2024-03-15</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Увеличение зарплаты</td>
-                <td>Зарплата</td>
-                <td>Новый</td>
-                <td>2024-03-14</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Выплата пособий</td>
-                <td>Зарплата</td>
-                <td>Одобрено</td>
-                <td>2024-03-14</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Возврат денег</td>
-                <td>Зарплата</td>
-                <td>Отказано</td>
-                <td>2024-03-14</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Возврат денег</td>
-                <td>Зарплата</td>
-                <td>Отказано</td>
-                <td>2024-03-14</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>Возврат денег</td>
-                <td>Зарплата</td>
-                <td>Отказано</td>
-                <td>2024-03-14</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>Возврат денег</td>
-                <td>Зарплата</td>
-                <td>Отказано</td>
-                <td>2024-03-14</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>Отпуск</td>
-                <td>Отпуск</td>
-                <td>Отказано</td>
-                <td>2024-03-14</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>Отпуск</td>
-                <td>Отпуск</td>
-                <td>Отказано</td>
-                <td>2024-03-14</td>
-            </tr>
-            <tr>
-                <td>11</td>
-                <td>Отпуск</td>
-                <td>Отпуск</td>
-                <td>Отказано</td>
-                <td>2024-03-14</td>
-            </tr>
-            <!-- Добавьте другие запросы здесь -->
         </tbody>
     </table>
 </div>
 
-<script src="employee.js"></script>
+<script src="/static/js/fill_table.js"></script>
+
+<!-- Подключение файла JavaScript -->
+<script src="/static/js/employee.js"></script>
 </body>
 </html>
