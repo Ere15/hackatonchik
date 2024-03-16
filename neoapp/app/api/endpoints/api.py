@@ -10,7 +10,6 @@ from typing import List
 from sqlalchemy.sql import text
 from neoapp.app.api.models.employee import Сотрудники
 from neoapp.app.api.models.request import Запросы
-import jwt
 from jwt import PyJWTError
 from dotenv import load_dotenv
 import os
