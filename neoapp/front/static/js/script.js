@@ -38,7 +38,5 @@ loginForm.addEventListener('submit', function(event) {
     })
     .catch(error => {
         console.error('Ошибка при проверке логина:', error);
-        alert(error.message);
     });
 });
-
