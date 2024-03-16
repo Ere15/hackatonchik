@@ -57,21 +57,30 @@ document.addEventListener("DOMContentLoaded", function() {
     // Обработчик для поиска при вводе в поле поиска
     searchInput.addEventListener("input", filterRows);
 
-    // Обработчик для открытия новой страницы при клике на строку запроса
+    // Обработчик для кнопки "На рассмотрении"
+    reviewingBtn.addEventListener("click", function() {
+        toggleFilter(reviewingBtn);
+    });
+
+    // Обработчик для кнопки "Рассмотрено"
+    reviewedBtn.addEventListener("click", function() {
+        toggleFilter(reviewedBtn);
+    });
+
+    // Обработчик для кнопки "Создать запрос"
+    makeRequestBtn.addEventListener("click", function() {
+        // Переход на страницу создания запроса
+        window.location.href = "redac_req.html";
+    });
+
+    // Добавляем обработчик клика на строки таблицы
     var requestRows = document.querySelectorAll(".requests-table tbody tr");
     requestRows.forEach(function(row) {
-        row.addEventListener("click", function(event) {
-            var cell = event.target.closest("td"); // Находим ячейку, на которой был клик
-            if (cell.cellIndex === 1) { // Проверяем, что клик был на ячейке "Название"
-                var requestData = row.cells[0].textContent; // Получаем данные запроса из первой ячейки (номер запроса)
-                // Формируем URL новой страницы
-                var newPageURL = "request.html?request=" + encodeURIComponent(requestData);
-                // Открываем новую страницу в этой же вкладке
-
-                // В данный момент открывается основной макет, без данных и таблицы                                    !!!!!!!!!
-                // window.location.href = newPageURL;
-                window.location.href = '/request';
-            }
+        row.addEventListener("click", function() {
+            // Получаем номер запроса из первой ячейки строки
+            var requestId = row.cells[0].textContent;
+            // Переходим на страницу деталей запроса с передачей номера запроса в параметрах запроса
+            window.location.href = "request_details.html?id=" + requestId;
         });
     });
 
